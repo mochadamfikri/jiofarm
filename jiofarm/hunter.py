@@ -213,5 +213,9 @@ def create_provider(cfg: Config) -> SMSProvider:
         from jiofarm.fivesim.client import FiveSim
 
         return FiveSim(cfg.api_key)  # type: ignore[return-value]
+    elif cfg.provider == "smscode_mock":
+        from jiofarm.smscode_mock.client import SMSCodeMock
+
+        return SMSCodeMock(cfg.api_key)  # type: ignore[return-value]
     else:
         raise SystemExit(f"Provider tidak dikenal: {cfg.provider}")
