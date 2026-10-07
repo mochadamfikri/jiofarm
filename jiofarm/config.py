@@ -47,8 +47,11 @@ def load_config() -> "Config":
             )
             raise SystemExit(msg)
         product = os.getenv("FIVESIM_PRODUCT", "jiomart").strip()
+    elif provider == "smscode_mock":
+        api_key = "mock"
+        product = os.getenv("SMSCODE_PRODUCT", "jio").strip()
     else:
-        raise SystemExit(f"PROVIDER tidak dikenal: '{provider}'. Pilih: grizzlysms, fivesim")
+        raise SystemExit(f"PROVIDER tidak dikenal: '{provider}'. Pilih: grizzlysms, fivesim, smscode_mock")
 
     return Config(
         provider=provider,
